@@ -1,43 +1,54 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ApiStudy.Model;
+using ApiStudy.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ApiStudy.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CalculatorController : Controller
+    public class CalculatorController : ControllerBase
     {
-        [HttpGet("sum/{firstNum}/{secondNum}")]
-        public IActionResult Get(string firstNum, string secondNum)
+        private readonly CalculatorService _calculatorService;
+
+        public CalculatorController(CalculatorService calculatorService)
         {
-            if (IsNumeric(firstNum) && IsNumeric(secondNum))
-            {
-                var sum = ConvertToDecimal(firstNum) + ConvertToDecimal(secondNum);
-                return Ok(sum);
-            }
-            return BadRequest("Invalid input");
+            _calculatorService = calculatorService;
         }
 
-        private decimal ConvertToDecimal(string value)
+        [HttpGet("[action]/{firstNum}/{secondNum}")]
+        public Calculator Sum(decimal firstNum, decimal secondNum)
         {
-            decimal decimalValue;
-            if (decimal.TryParse(value,
-                System.Globalization.NumberStyles.Any,
-                System.Globalization.NumberFormatInfo.InvariantInfo,
-                out decimalValue))
-            {
-                return decimalValue;
-            }
-            return 0;
+            return _calculatorService.Sum(firstNum, secondNum);
         }
 
-        private bool IsNumeric(string value)
+        [HttpGet("[action]/{firstNum}/{secondNum}")]
+        public Calculator Subtract(decimal firstNum, decimal secondNum)
         {
-            decimal decimalValue;
-            bool isNumber = decimal.TryParse(value,
-                System.Globalization.NumberStyles.Any,
-                System.Globalization.NumberFormatInfo.InvariantInfo,
-                out decimalValue);
-            return isNumber;
+            return _calculatorService.Subtract(firstNum, secondNum);
+        }
+
+        [HttpGet("[action]/{firstNum}/{secondNum}")]
+        public Calculator Multiply(decimal firstNum, decimal secondNum)
+        {
+            return _calculatorService.Multiply(firstNum, secondNum);
+        }
+
+        [HttpGet("[action]/{firstNum}/{secondNum}")]
+        public Calculator Division(decimal firstNum, decimal secondNum)
+        {
+            return _calculatorService.Division(firstNum, secondNum);
+        }
+
+        [HttpGet("[action]/{firstNum}/{secondNum}")]
+        public Calculator Mean(decimal firstNum, decimal secondNum)
+        {
+            return _calculatorService.Mean(firstNum, secondNum); ;
+        }
+
+        [HttpGet("[action]/{value}")]
+        public Calculator SquareRoot(double value)
+        {
+            return _calculatorService.SquareRoot(value); ;
         }
     }
 }

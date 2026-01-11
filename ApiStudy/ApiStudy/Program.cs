@@ -1,4 +1,5 @@
 using ApiStudy.Services;
+using ApiStudy.Services.Impl;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddSingleton<CalculatorService>();
+builder.Services.AddScoped<IPersonServices, PersonServicesImpl>();
 
 var app = builder.Build();
 

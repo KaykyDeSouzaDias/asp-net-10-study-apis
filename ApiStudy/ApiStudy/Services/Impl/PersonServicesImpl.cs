@@ -1,68 +1,52 @@
 ﻿using ApiStudy.Model;
+using ApiStudy.Model.Context;
+using System;
 
 namespace ApiStudy.Services.Impl
 {
     public class PersonServicesImpl : IPersonServices
     {
+        private MSSQLContext _context;
+
+        public PersonServicesImpl(MSSQLContext context)
+        {
+            _context = context;
+        }
+
         public List<Person> FindAll()
         {
-           List<Person> persons = new List<Person>();
-            for (int i = 1; i < 9; i++)
-            {
-                persons.Add(MockPerson(i));
-            }
-
-            return persons;
+           return _context.Persons.ToList();
         }
         public Person FindById(long id)
         {
-            var person = MockPerson((int) id);
-
-            return person;
+            return _context.Persons.Find(id);
         }
 
 
         public Person Create(Person person)
         {
-            person.Id = new Random().Next(1, 1000); // Simulate ID assignment
+            _context.Add(person);
+            _context.SaveChanges();
+
             return person;
         }
         public Person Update(Person person)
         {
-            return person;
-        }
-        public void Delete(long id)
-        {
-            // simulate delete operation
-        }
+            Person selectedPerson = _context.Persons.Find(person.Id);
+            if (selectedPerson == null) return null;
 
-        private Person MockPerson(int index)
-        {
-            double formattedIndex = (double)index;
-            Person person;
-            if (index % 2 == 0)
-            {
-                person = new Person
-                {
-                    Id = new Random().Next(1, 1000),
-                    FirstName = "Maria " + (index / 2),
-                    LastName = "Silva " + (index / 2),
-                    Address = "123 Main",
-                    Gender = "Female",
-                };
-            }
-            else
-            {
-                person = new Person
-                {
-                    Id = new Random().Next(1, 1000),
-                    FirstName = "John " + ((formattedIndex / 2) + 0.5),
-                    LastName = "Doe " + ((formattedIndex / 2) + 0.5),
-                    Address = "123 Main",
-                    Gender = "Male",
-                };
-            }
+            _context.Entry(selectedPerson).CurrentValues.SetValues(person);
+            _context.SaveChanges();
+
             return person;
+        }
+        public void Delete(long Id)
+        {
+            Person selectedPerson = _context.Persons.Find(Id);
+            if (selectedPerson == null) return;
+
+            _context.Remove(selectedPerson);
+            _context.SaveChanges();
         }
     }
 }

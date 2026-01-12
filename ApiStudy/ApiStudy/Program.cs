@@ -1,3 +1,4 @@
+using ApiStudy.Configurations;
 using ApiStudy.Services;
 using ApiStudy.Services.Impl;
 
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+builder.Services.AddDatabaseConfiguration(builder.Configuration);
 builder.Services.AddScoped<IPersonServices, PersonServicesImpl>();
 
 var app = builder.Build();

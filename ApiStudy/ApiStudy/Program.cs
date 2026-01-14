@@ -1,4 +1,6 @@
 using ApiStudy.Configurations;
+using ApiStudy.Repositories;
+using ApiStudy.Repositories.Impl;
 using ApiStudy.Services;
 using ApiStudy.Services.Impl;
 
@@ -12,6 +14,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddDatabaseConfiguration(builder.Configuration);
 builder.Services.AddScoped<IPersonServices, PersonServicesImpl>();
+builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 
 var app = builder.Build();
 

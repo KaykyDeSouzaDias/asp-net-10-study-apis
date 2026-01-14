@@ -13,6 +13,10 @@ builder.AddSerilogLogging();
 builder.Services.AddControllers();
 
 builder.Services.AddDatabaseConfiguration(builder.Configuration);
+builder.Services.AddEvolveConfiguration(
+    builder.Configuration,
+    builder.Environment);
+
 builder.Services.AddScoped<IPersonServices, PersonServicesImpl>();
 builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 

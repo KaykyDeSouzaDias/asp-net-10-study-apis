@@ -8,7 +8,6 @@ namespace ApiStudy.Model
     [Table("books")]
     public class Book : BaseEntity
     {
-
         [Column("title", TypeName = "varchar(MAX)")]
         public string Title { get; set; }
 

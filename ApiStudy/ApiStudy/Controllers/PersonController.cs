@@ -1,4 +1,5 @@
-﻿using ApiStudy.Model;
+﻿using ApiStudy.Data.DTO;
+using ApiStudy.Model;
 using ApiStudy.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,7 +39,7 @@ namespace ApiStudy.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Person person)
+        public IActionResult Post([FromBody] PersonDTO person)
         {
             _logger.LogInformation("Creating {FirstName} {LastName}", [person.FirstName, person.LastName]);
             var createdPerson = _personService.Create(person);
@@ -51,7 +52,7 @@ namespace ApiStudy.Controllers
         }
 
         [HttpPut]
-        public IActionResult Put([FromBody] Person person)
+        public IActionResult Put([FromBody] PersonDTO person)
         {
             _logger.LogInformation("Updating {FirstName} {LastName}", [person.FirstName, person.LastName]);
             var createdPerson = _personService.Update(person);

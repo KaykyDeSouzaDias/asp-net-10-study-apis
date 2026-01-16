@@ -1,4 +1,4 @@
-﻿using ApiStudy.Model;
+﻿using ApiStudy.Data.DTO;
 using ApiStudy.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,7 +39,7 @@ namespace ApiStudy.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Book book)
+        public IActionResult Post([FromBody] BookDTO book)
         {
             _logger.LogInformation("Creating {Title} by {Author}", book.Title, book.Author);
             var createdBook = _bookService.Create(book);
@@ -51,7 +51,7 @@ namespace ApiStudy.Controllers
             return Ok(createdBook);
         }
         [HttpPut]
-        public IActionResult Put([FromBody] Book book)
+        public IActionResult Put([FromBody] BookDTO book)
         {
             _logger.LogInformation("Updating {Title} by {Author}", book.Title, book.Author);
             var updatedBook = _bookService.Update(book);

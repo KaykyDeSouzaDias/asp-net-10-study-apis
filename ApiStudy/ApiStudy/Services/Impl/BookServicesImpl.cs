@@ -1,5 +1,7 @@
-﻿using ApiStudy.Model;
+﻿using ApiStudy.Data.DTO;
+using ApiStudy.Model;
 using ApiStudy.Repositories;
+using Mapster;
 
 namespace ApiStudy.Services.Impl
 {
@@ -12,22 +14,26 @@ namespace ApiStudy.Services.Impl
             _repository = repository;
         }
 
-        public List<Book> FindAll()
+        public List<BookDTO> FindAll()
         {
-            return _repository.FindAll();
+            return _repository.FindAll().Adapt<List<BookDTO>>();
         }
-        public Book FindById(long id)
+        public BookDTO FindById(long id)
         {
-            return _repository.FindById(id);
+            return _repository.FindById(id).Adapt<BookDTO>();
         }
 
-        public Book Create(Book book)
+        public BookDTO Create(BookDTO book)
         {
-            return _repository.Create(book);
+            var entity = book.Adapt<Book>();
+            entity = _repository.Create(entity);
+            return entity.Adapt<BookDTO>();
         }
-        public Book Update(Book book)
+        public BookDTO Update(BookDTO book)
         {
-            return _repository.Update(book);
+            var entity = book.Adapt<Book>();
+            entity = _repository.Update(entity);
+            return entity.Adapt<BookDTO>();
         }
         public void Delete(long id)
         {

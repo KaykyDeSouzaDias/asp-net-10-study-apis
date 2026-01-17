@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="ApiStudy.Tests/ApiStudy.Tests.csproj" Id="ba6a1f94-8242-4c0b-96a5-9be6117c91ef" />
   <Project Path="ApiStudy/ApiStudy.csproj" />
 </Solution>

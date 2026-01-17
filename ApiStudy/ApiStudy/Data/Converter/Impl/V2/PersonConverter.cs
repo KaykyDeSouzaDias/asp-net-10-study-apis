@@ -14,6 +14,8 @@ namespace ApiStudy.Data.Converter.Impl.V2
                 Id = origin.Id,
                 FirstName = origin.FirstName,
                 LastName = origin.LastName,
+                Address = origin.Address,
+                Gender = origin.Gender,
                 Birthday = DateTime.Now
                 //Birthday = origin.Birthday
             };

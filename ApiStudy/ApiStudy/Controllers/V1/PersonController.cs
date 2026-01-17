@@ -1,11 +1,10 @@
-﻿using ApiStudy.Data.DTO;
-using ApiStudy.Model;
+﻿using ApiStudy.Data.DTO.V1;
 using ApiStudy.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ApiStudy.Controllers
+namespace ApiStudy.Controllers.V1
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class PersonController : ControllerBase
     {
@@ -48,6 +47,8 @@ namespace ApiStudy.Controllers
                 _logger.LogError("Failed to create person {FirstName} {LastName}", [person.FirstName, person.LastName]);
                 return NotFound();
             }
+            Response.Headers.Add("X-API-Deprecated", "true");
+            Response.Headers.Add("X-API-Deprecation-Date", "2026-01-31");
             return Ok(createdPerson);
         }
 

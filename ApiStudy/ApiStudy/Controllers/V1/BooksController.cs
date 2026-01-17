@@ -1,10 +1,10 @@
-﻿using ApiStudy.Data.DTO;
+﻿using ApiStudy.Data.DTO.V1;
 using ApiStudy.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ApiStudy.Controllers
+namespace ApiStudy.Controllers.V1
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class BooksController : ControllerBase
     {

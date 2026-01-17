@@ -1,4 +1,4 @@
-﻿namespace ApiStudy.Data.DTO
+﻿namespace ApiStudy.Data.DTO.V1
 {
     public class BookDTO
     {

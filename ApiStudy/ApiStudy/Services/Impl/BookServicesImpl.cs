@@ -1,4 +1,4 @@
-﻿using ApiStudy.Data.DTO;
+﻿using ApiStudy.Data.DTO.V1;
 using ApiStudy.Model;
 using ApiStudy.Repositories;
 using Mapster;

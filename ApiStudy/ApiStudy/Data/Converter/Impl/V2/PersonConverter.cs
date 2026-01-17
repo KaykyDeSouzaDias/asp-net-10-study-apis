@@ -1,8 +1,8 @@
 ﻿using ApiStudy.Data.Converter.Contract;
-using ApiStudy.Data.DTO;
+using ApiStudy.Data.DTO.V2;
 using ApiStudy.Model;
 
-namespace ApiStudy.Data.Converter.Impl
+namespace ApiStudy.Data.Converter.Impl.V2
 {
     public class PersonConverter : IParser<PersonDTO, Person>, IParser<Person, PersonDTO>
     {
@@ -13,7 +13,9 @@ namespace ApiStudy.Data.Converter.Impl
             {
                 Id = origin.Id,
                 FirstName = origin.FirstName,
-                LastName = origin.LastName
+                LastName = origin.LastName,
+                Birthday = DateTime.Now
+                //Birthday = origin.Birthday
             };
         }
 
@@ -26,7 +28,8 @@ namespace ApiStudy.Data.Converter.Impl
                 FirstName = origin.FirstName,
                 LastName = origin.LastName,
                 Address = origin.Address,
-                Gender = origin.Gender
+                Gender = origin.Gender,
+                //Birthday = origin.Birthday
             };
         }
 

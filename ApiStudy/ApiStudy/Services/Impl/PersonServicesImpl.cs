@@ -1,5 +1,5 @@
-﻿using ApiStudy.Data.Converter.Impl;
-using ApiStudy.Data.DTO;
+﻿using ApiStudy.Data.Converter.Impl.V1;
+using ApiStudy.Data.DTO.V1;
 using ApiStudy.Model;
 using ApiStudy.Repositories;
 

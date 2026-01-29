@@ -21,6 +21,7 @@ namespace ApiStudy.Data.DTO.V2
         public string Address { get; set; }
 
         //[JsonPropertyOrder(6)]
+        [JsonConverter(typeof(GenderSerializer))]
         public string Gender { get; set; }
 
         //[JsonPropertyOrder(2)]

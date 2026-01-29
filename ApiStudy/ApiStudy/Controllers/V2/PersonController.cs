@@ -27,6 +27,8 @@ namespace ApiStudy.Controllers.V2
                 _logger.LogError("Failed to create person {FirstName} {LastName}", [person.FirstName, person.LastName]);
                 return NotFound();
             }
+            //createdPerson.LastName = null;
+            //createdPerson.Age = 20;
             return Ok(createdPerson);
         }
     }

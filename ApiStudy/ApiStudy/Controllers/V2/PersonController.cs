@@ -18,6 +18,9 @@ namespace ApiStudy.Controllers.V2
         }
 
         [HttpPost]
+        [ProducesResponseType(200, Type = typeof(PersonDTO))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult Post([FromBody] PersonDTO person)
         {
             _logger.LogInformation("Creating {FirstName} {LastName}", [person.FirstName, person.LastName]);

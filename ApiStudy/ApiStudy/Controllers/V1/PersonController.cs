@@ -18,6 +18,9 @@ namespace ApiStudy.Controllers.V1
         }
 
         [HttpGet]
+        [ProducesResponseType(200, Type = typeof (List<PersonDTO>))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult Get()
         {
             _logger.LogInformation("Getting all persons");
@@ -25,6 +28,9 @@ namespace ApiStudy.Controllers.V1
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(200, Type = typeof(PersonDTO))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult Get(long id)
         {
             _logger.LogInformation("Getting person by ID {id}", id);
@@ -38,6 +44,9 @@ namespace ApiStudy.Controllers.V1
         }
 
         [HttpPost]
+        [ProducesResponseType(200, Type = typeof(PersonDTO))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult Post([FromBody] PersonDTO person)
         {
             _logger.LogInformation("Creating {FirstName} {LastName}", [person.FirstName, person.LastName]);
@@ -48,11 +57,14 @@ namespace ApiStudy.Controllers.V1
                 return NotFound();
             }
             Response.Headers.Add("X-API-Deprecated", "true");
-            Response.Headers.Add("X-API-Deprecation-Date", "2026-01-31");
+            Response.Headers.Add("X-API-Deprecation-Date", "2026-03-31");
             return Ok(createdPerson);
         }
 
         [HttpPut]
+        [ProducesResponseType(200, Type = typeof(PersonDTO))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult Put([FromBody] PersonDTO person)
         {
             _logger.LogInformation("Updating {FirstName} {LastName}", [person.FirstName, person.LastName]);
@@ -67,6 +79,9 @@ namespace ApiStudy.Controllers.V1
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(204, Type = typeof(PersonDTO))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult Delete(long id)
         {
             _logger.LogInformation("Deleting {id}", id);

@@ -20,12 +20,18 @@ namespace ApiStudy.Controllers.V1
         }
 
         [HttpGet]
+        [ProducesResponseType(200, Type = typeof(BookDTO))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult Get()
         {
             _logger.LogInformation("Getting all books");
             return Ok(_bookService.FindAll());
         }
         [HttpGet("{id}")]
+        [ProducesResponseType(200, Type = typeof(BookDTO))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult Get(long id)
         {
             _logger.LogInformation("Getting book by ID {id}", id);
@@ -39,6 +45,9 @@ namespace ApiStudy.Controllers.V1
         }
 
         [HttpPost]
+        [ProducesResponseType(200, Type = typeof(BookDTO))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult Post([FromBody] BookDTO book)
         {
             _logger.LogInformation("Creating {Title} by {Author}", book.Title, book.Author);
@@ -51,6 +60,9 @@ namespace ApiStudy.Controllers.V1
             return Ok(createdBook);
         }
         [HttpPut]
+        [ProducesResponseType(200, Type = typeof(BookDTO))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult Put([FromBody] BookDTO book)
         {
             _logger.LogInformation("Updating {Title} by {Author}", book.Title, book.Author);
@@ -63,6 +75,9 @@ namespace ApiStudy.Controllers.V1
             return Ok(book);
         }
         [HttpDelete("{id}")]
+        [ProducesResponseType(204, Type = typeof(BookDTO))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult Delete(long id)
         {
             _logger.LogInformation("Deleting book with ID {id}", id);
